@@ -48,6 +48,7 @@ jobs:
       - name: Upload bin
         uses: actions/upload-artifact@v4
         with:
+          name: OnStepX
           path: /home/runner/work/OnStepX/OnStepX/build/esp32.esp32.esp32
 
 # Using library Wire at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\Wire 

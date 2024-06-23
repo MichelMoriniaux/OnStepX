@@ -19,10 +19,24 @@
 #define DRIVER_TMC_STEPPER                // use TMCStepper library
 #define FRAM_WRITE_WAIT 0                 // fast writes into FRAM are ok
 #define GPIO_DEVICE SWS                   // activate external GPIO device on SWS
+#define AP_ENABLED                  false //
 #define AP_SSID "OnStepX"                 // set WiFi SSID name
-#define MDNS_NAME "OnStepX"               // set mDNS name
+#define AP_PASSWORD            "password" //  "password", Wifi Access Point password.                                         Adjust
+#define AP_CHANNEL                      7 //           7, Wifi Access Point channel.                                          Adjust
+#define AP_IP_ADDR          {192,168,0,1} // ..,168,0,1}, Wifi Access Point IP Address.                                       Adjust
+#define AP_GW_ADDR          {192,168,0,1} // ..,168,0,1}, Wifi Access Point GATEWAY Address.                                  Adjust
+#define AP_SN_MASK        {255,255,255,0} // ..55,255,0}, Wifi Access Point SUBNET Mask.                                      Adjust
+#define MDNS_NAME "OnStepXWifi"               // set mDNS name
+#define STA_ENABLED                 true //       false, Wifi Station Enabled.                                               Adjust
+#define STA_SSID      "OnStepX" //      "Home", Wifi Station SSID to connnect to.                                   Adjust
+#define STA_PASSWORD           "password" //  "password", Wifi Station mode password.                                         Adjust
+#define STA_DHCP_ENABLED             true //       false, Wifi Station/Ethernet DHCP Enabled.                                 Adjust
+#define STA_IP_ADDR        {192,168,0,15} // ..168,1,55}, Wifi Station/Ethernet IP Address.                                   Adjust
+#define STA_GW_ADDR         {192,168,0,1} // ..,168,1,1}, Wifi Station/Ethernet GATEWAY Address.                              Adjust
+#define STA_SN_MASK       {255,255,255,0} // ..55,255,0}, Wifi Station/Ethernet SUBNET Mask.                                  Adjust
 #define DISPLAY_WEATHER ON                // website, display weather
 #define DISPLAY_INTERNAL_TEMPERATURE ON   // website, display internal MCU temperature
+#define DISPLAY_WIFI_SIGNAL_STRENGTH   ON //     ON, Wireless signal strength reported via web interface. OFF otherwise.      Option
 #define DISPLAY_SERVO_MONITOR ON          // website, display servo monitor
 #define DISPLAY_SERVO_ORIGIN_CONTROLS ON  // website, display servo absolute encoder origin controls
 #define DISPLAY_SERVO_CALIBRATION ON      // website, display servo RA axis calibration controls
@@ -38,7 +52,7 @@
 #define SERIAL_C_BAUD_DEFAULT         OFF //    OFF, n. Baud rate as above. See (src/pinmaps/) for Serial port assignments.   Infreq
 #define SERIAL_D_BAUD_DEFAULT         OFF //    OFF, n. Baud rate as above. See (src/pinmaps/) for Serial port assignments.   Infreq
 #define SERIAL_E_BAUD_DEFAULT         OFF //    OFF, n. Baud rate as above. See (src/pinmaps/) for Serial port assignments.   Infreq
-#define SERIAL_RADIO    OFF //    OFF, Use BLUETOOTH or WIFI_ACCESS_POINT or WIFI_STATION (ESP32 only.)         Option
+#define SERIAL_RADIO    WIFI_STATION //    OFF, Use BLUETOOTH or WIFI_ACCESS_POINT or WIFI_STATION (ESP32 only.)         Option
 
 // STATUS --------------------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Controller#STATUS_LED
 #define STATUS_LED                     ON //    OFF, Steady illumination if no error, blinks w/error code otherwise.          Option
@@ -49,7 +63,7 @@
 #define RETICLE_LED_INVERT            OFF //    OFF, ON Inverts control for cases where 0V is max brightness.                 Option
 
 // WEATHER SENSOR --------------------------------- see https://onstep.groups.io/g/main/wiki/Configuration_Controller#WEATHER_SENSOR
-#define WEATHER               BME280 //    OFF, BME280 (I2C 0x77,) BME280_0x76, BME280_SPI (see pinmap for CS.)          Option
+#define WEATHER               BME280_0x76 //    OFF, BME280 (I2C 0x77,) BME280_0x76, BME280_SPI (see pinmap for CS.)          Option
                                           //         BMP280 (I2C 0x77,) BMP280_0x76, BMP280_SPI (see pinmap for CS.)
                                           //         BME280 or BMP280 for temperature, pressure.  BME280 for humidity also.
 
@@ -251,7 +265,7 @@
 #define GUIDE_DISABLE_BACKLASH        OFF //    OFF, Disable backlash takeup during guiding at <= 1X.                         Option
 
 // LIMITS ------------------------------------------------------ see https://onstep.groups.io/g/main/wiki/Configuration_Mount#LIMITS
-#define LIMIT_SENSE                   LOW //    OFF, HIGH or LOW state on limit sense switch stops movement.                  Option
+#define LIMIT_SENSE                   OFF //    OFF, HIGH or LOW state on limit sense switch stops movement.                  Option
 #define LIMIT_STRICT                  OFF //    OFF, disables limits until unpark goto or sync. ON enables limits at startup. Option
                                           //         note that ON also disables all motion until date/time are set.
 
