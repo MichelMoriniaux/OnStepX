@@ -35,6 +35,21 @@ Stellarium, etc.
 
 There are also [INDI](http://www.indilib.org/about.html) drivers so it can be used from Linux, with CdC or KStars.
 
+# Manticore specifics
+The Primary ESP32 on the manticore provides the following services
+- runs OnstepX
+- USB Serial connection
+- Wifi connectivity
+- webserver through the [webserver](https://github.com/hjd1964/OnStepX-Plugins) plugin
+- Driver control
+- Encoders
+- ST4 port
+- GPS rx
+- GPS PPS
+- PEC sensor
+- Status LED and Buzzer
+- secondary ESP32 commas and flashing
+
 # Documentation
 Detailed documentation, including the full set of features, detailed designs for
 PCBs, instructions on how to build a controller, how to configure the firmware

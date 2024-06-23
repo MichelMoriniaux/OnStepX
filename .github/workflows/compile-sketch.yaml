@@ -1,0 +1,69 @@
+name: Compile Sketch
+
+# The workflow will run on every push and pull request to the repository
+on:
+  - push
+  - pull_request
+
+jobs:
+  compile-sketch:
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step makes the contents of the repository available to the workflow
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: Manticore
+
+      # For more information: https://github.com/arduino/compile-sketches#readme
+      - name: Compile sketch
+        uses: arduino/compile-sketches@v1.1.0
+        with:
+          fqbn: "esp32:esp32:esp32"
+          platforms: |
+            - name: esp32:esp32
+              version: 2.0.16
+              source-url: https://dl.espressif.com/dl/package_esp32_index.json
+          # The default is to compile for the Arduino Uno board. If you want to compile for other boards, use the `fqbn` input.
+          sketch-paths: |
+            - ./OnStepX.ino
+          cli-compile-flags: |
+            - "-e"
+          #  - "--board-options JTAGAdapter=default,PSRAM=disabled,PartitionScheme=huge_app,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,LoopCore=1,EventsCore=1,DebugLevel=none,EraseFlash=none"
+          libraries: |
+            - source-url: https://github.com/denyssene/SimpleKalmanFilter.git
+            - source-url: https://github.com/teemuatlut/TMCStepper.git
+            - source-url: https://github.com/Dlloydev/QuickPID.git
+            - source-url: https://github.com/Rotario/arduinoCurveFitting.git
+            - source-url: https://github.com/Makuna/Rtc/archive/master.zip
+            - source-url: https://github.com/adafruit/Adafruit_BME280_Library.git
+            - source-url: https://github.com/hjd1964/OneWire.git
+            - source-url: https://github.com/hjd1964/TMC2209.git
+            - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+            - source-url: https://github.com/adafruit/Adafruit_Sensor.git
+            - name: ArduinoMDNS
+            - name: EspSoftwareSerial
+            - name: TinyGPSPlus
+      - name: Upload bin
+        uses: actions/upload-artifact@v4
+        with:
+          path: /home/runner/work/OnStepX/OnStepX/build/esp32.esp32.esp32
+
+# Using library Wire at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\Wire 
+# Using library WiFi at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\WiFi 
+# Using library ESPmDNS at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\ESPmDNS 
+# Using library SimpleKalmanFilter at version 0.1 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\SimpleKalmanFilter source-url: https://github.com/denyssene/SimpleKalmanFilter
+# Using library TMCStepper at version 0.7.3 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\TMCStepper 
+# Using library SPI at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\SPI 
+# Using library QuickPID at version 3.1.9 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\QuickPID 
+# Using library CurveFitting at version 1.0.6 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\CurveFitting 
+# Using library FS at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\FS 
+# Using library LittleFS at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\LittleFS 
+# Using library EEPROM at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\EEPROM 
+# Using library TinyGPSPlus at version 1.0.3 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\TinyGPSPlus 
+# Using library EspSoftwareSerial at version 8.1.0 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\EspSoftwareSerial 
+# Using library WebServer at version 2.0.0 in folder: C:\Users\miche\OneDrive\Documents\ArduinoData\packages\esp32\hardware\esp32\2.0.16\libraries\WebServer 
+# Using library Adafruit_BME280_Library at version 2.2.2 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\Adafruit_BME280_Library 
+# Using library Adafruit_BusIO-1.16.1 at version 1.16.1 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\Adafruit_BusIO-1.16.1 
+# Using library Adafruit_Unified_Sensor at version 1.1.7 in folder: C:\Users\miche\OneDrive\Documents\Arduino\libraries\Adafruit_Unified_Sensor 
