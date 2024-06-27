@@ -41,6 +41,8 @@ jobs:
               version: 2.2.2
             - source-url: https://github.com/hjd1964/OneWire.git
             - source-url: https://github.com/hjd1964/TMC2209.git
+            - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+              version: 1.16.1
             - source-url: https://github.com/adafruit/Adafruit_Sensor.git
               version: 1.1.7
             - name: ArduinoMDNS
